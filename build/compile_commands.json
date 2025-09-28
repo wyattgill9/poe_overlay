@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/wyattgill/Github/poe_overlay/build",
+  "command": "/run/current-system/sw/bin/c++  -I/home/wyattgill/Github/poe_overlay/include -std=c++23 -o CMakeFiles/poe_tracker.dir/src/example.cpp.o -c /home/wyattgill/Github/poe_overlay/src/example.cpp",
+  "file": "/home/wyattgill/Github/poe_overlay/src/example.cpp",
+  "output": "CMakeFiles/poe_tracker.dir/src/example.cpp.o"
+},
+{
+  "directory": "/home/wyattgill/Github/poe_overlay/build",
+  "command": "/run/current-system/sw/bin/c++  -I/home/wyattgill/Github/poe_overlay/include  -o CMakeFiles/main.dir/app/main.cpp.o -c /home/wyattgill/Github/poe_overlay/app/main.cpp",
+  "file": "/home/wyattgill/Github/poe_overlay/app/main.cpp",
+  "output": "CMakeFiles/main.dir/app/main.cpp.o"
+}
+]

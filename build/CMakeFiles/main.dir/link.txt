@@ -1,0 +1,1 @@
+/run/current-system/sw/bin/c++ -Xlinker --dependency-file=CMakeFiles/main.dir/link.d CMakeFiles/main.dir/app/main.cpp.o -o main  libpoe_tracker.a
