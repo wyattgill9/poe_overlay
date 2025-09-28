@@ -1,2 +1,0 @@
-/run/current-system/sw/bin/ar qc libpoe_tracker.a CMakeFiles/poe_tracker.dir/src/example.cpp.o
-/run/current-system/sw/bin/ranlib libpoe_tracker.a

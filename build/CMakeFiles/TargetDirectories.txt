@@ -1,4 +1,0 @@
-/home/wyattgill/Github/poe_overlay/build/CMakeFiles/poe_tracker.dir
-/home/wyattgill/Github/poe_overlay/build/CMakeFiles/main.dir
-/home/wyattgill/Github/poe_overlay/build/CMakeFiles/edit_cache.dir
-/home/wyattgill/Github/poe_overlay/build/CMakeFiles/rebuild_cache.dir
