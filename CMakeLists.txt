@@ -1,10 +1,13 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.31)
 
 project(poe_tracker VERSION 1.0 LANGUAGES CXX)
 
 set(SOURCES
     src/example.cpp
 )
+
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -std=c++23")
 
 add_library(poe_tracker ${SOURCES})
 
