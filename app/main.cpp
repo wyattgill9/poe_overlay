@@ -1,18 +1,21 @@
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #include "httplib.h"
 
-#include "example.h"
+#include "passive_tree.h"
 
 int main() {
-    Test test;
-    test.test();
+    PassiveTree tree;
 
-    // TODO: make https & use openssl
-    httplib::Client cli("http://mobalytics.gg/poe-2/builds/lightning-arrow-farmer-fubgun");
-    auto res = cli.Get("/");
+    tree.add_node(0, "Hi");
 
-    std::cout<< res->status << "\n";
-    std::cout<< res->body << "\n";
+    
+    httplib::Client cli("https://mobalytics.gg");
+    auto res = cli.Get("/poe-2/builds/lightning-arrow-farmer-fubgun");
+
+    if(res) {
+    //     std::cout<< res->status << "\n";
+        std::cout<< res->body   << "\n";
+    }
 
     return 0;
 }
