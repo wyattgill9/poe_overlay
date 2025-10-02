@@ -7,7 +7,6 @@ int main() {
     PassiveTree tree;
 
     tree.add_node(0, "Hi");
-
     
     httplib::Client cli("https://mobalytics.gg");
     auto res = cli.Get("/poe-2/builds/lightning-arrow-farmer-fubgun");
