@@ -8,7 +8,12 @@ set(SOURCES
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -std=c++23")
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
+
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
 
 add_library(poe_tracker ${SOURCES})
 
