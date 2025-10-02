@@ -1,0 +1,244 @@
+[1/6] Scanning /home/wyattgill/Github/poe_overlay/src/passive_tree.cpp for CXX dependencies
+FAILED: [code=1] CMakeFiles/poe_tracker.dir/src/passive_tree.cpp.o.ddi 
+"/nix/store/mdh9zj32f7s2xhg683g8x5sg9qba4rxb-clang-19.1.7/bin/clang-scan-deps" -format=p1689 -- /nix/store/fbfcll570w9vimfbh41f9b4rrwnp33f3-clang-wrapper-19.1.7/bin/clang++  -I/home/wyattgill/Github/poe_overlay/include -O3 -std=c++23 -std=c++23 -x c++ /home/wyattgill/Github/poe_overlay/src/passive_tree.cpp -c -o CMakeFiles/poe_tracker.dir/src/passive_tree.cpp.o -resource-dir "/nix/store/fbfcll570w9vimfbh41f9b4rrwnp33f3-clang-wrapper-19.1.7/resource-root" -MT CMakeFiles/poe_tracker.dir/src/passive_tree.cpp.o.ddi -MD -MF CMakeFiles/poe_tracker.dir/src/passive_tree.cpp.o.ddi.d > CMakeFiles/poe_tracker.dir/src/passive_tree.cpp.o.ddi.tmp && mv CMakeFiles/poe_tracker.dir/src/passive_tree.cpp.o.ddi.tmp CMakeFiles/poe_tracker.dir/src/passive_tree.cpp.o.ddi
+Error while scanning dependencies for /home/wyattgill/Github/poe_overlay/src/passive_tree.cpp:
+In file included from /home/wyattgill/Github/poe_overlay/src/passive_tree.cpp:1:
+In file included from /home/wyattgill/Github/poe_overlay/include/passive_tree.h:2:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/string:589:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__algorithm/max.h:12:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__algorithm/comp.h:12:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__config:14:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__configuration/abi.h:15:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__configuration/platform.h:35:12: fatal error: 'features.h' file not found
+[2/6] Building CXX object CMakeFiles/main.dir/app/main.cpp.o
+FAILED: [code=1] CMakeFiles/main.dir/app/main.cpp.o 
+/nix/store/fbfcll570w9vimfbh41f9b4rrwnp33f3-clang-wrapper-19.1.7/bin/clang++  -I/home/wyattgill/Github/poe_overlay/include -O3 -std=c++23 -MD -MT CMakeFiles/main.dir/app/main.cpp.o -MF CMakeFiles/main.dir/app/main.cpp.o.d -o CMakeFiles/main.dir/app/main.cpp.o -c /home/wyattgill/Github/poe_overlay/app/main.cpp
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:280:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/algorithm:61:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/stl_algo.h:71:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cstdlib:81:
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:56:3: error: declaration conflicts with target of using declaration already in scope
+   56 |   abs(long __i) { return __builtin_labs(__i); }
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/stdlib.h:113:53: note: target of using declaration
+  113 | _LIBCPP_NODISCARD inline _LIBCPP_HIDE_FROM_ABI long abs(long __x) _NOEXCEPT { return __builtin_labs(__x); }
+      |                                                     ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:52:11: note: using declaration
+   52 |   using ::abs;
+      |           ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:61:3: error: declaration conflicts with target of using declaration already in scope
+   61 |   abs(long long __x) { return __builtin_llabs (__x); }
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/stdlib.h:114:58: note: target of using declaration
+  114 | _LIBCPP_NODISCARD inline _LIBCPP_HIDE_FROM_ABI long long abs(long long __x) _NOEXCEPT { return __builtin_llabs(__x); }
+      |                                                          ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:52:11: note: using declaration
+   52 |   using ::abs;
+      |           ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:71:3: error: declaration conflicts with target of using declaration already in scope
+   71 |   abs(double __x)
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/stdlib.h:121:55: note: target of using declaration
+  121 | _LIBCPP_NODISCARD inline _LIBCPP_HIDE_FROM_ABI double abs(double __lcpp_x) _NOEXCEPT {
+      |                                                       ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:52:11: note: using declaration
+   52 |   using ::abs;
+      |           ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:75:3: error: declaration conflicts with target of using declaration already in scope
+   75 |   abs(float __x)
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/stdlib.h:117:54: note: target of using declaration
+  117 | _LIBCPP_NODISCARD inline _LIBCPP_HIDE_FROM_ABI float abs(float __lcpp_x) _NOEXCEPT {
+      |                                                      ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:52:11: note: using declaration
+   52 |   using ::abs;
+      |           ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:79:3: error: declaration conflicts with target of using declaration already in scope
+   79 |   abs(long double __x)
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/stdlib.h:125:60: note: target of using declaration
+  125 | _LIBCPP_NODISCARD inline _LIBCPP_HIDE_FROM_ABI long double abs(long double __lcpp_x) _NOEXCEPT {
+      |                                                            ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/std_abs.h:52:11: note: using declaration
+   52 |   using ::abs;
+      |           ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:280:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/algorithm:61:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/bits/stl_algo.h:71:
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cstdlib:181:3: error: declaration conflicts with target of using declaration already in scope
+  181 |   div(long __i, long __j) _GLIBCXX_NOTHROW { return ldiv(__i, __j); }
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/stdlib.h:143:37: note: target of using declaration
+  143 | inline _LIBCPP_HIDE_FROM_ABI ldiv_t div(long __x, long __y) _NOEXCEPT { return ::ldiv(__x, __y); }
+      |                                     ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cstdlib:149:11: note: using declaration
+  149 |   using ::div;
+      |           ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:366:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/hypot.h:94:16: error: reference to 'enable_if_t' is ambiguous
+   94 |           std::enable_if_t< is_arithmetic_v<_A1> && is_arithmetic_v<_A2> && is_arithmetic_v<_A3>, int> = 0 >
+      |                ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:2711:5: note: candidate found by name lookup is 'std::enable_if_t'
+ 2711 |     using enable_if_t = typename enable_if<_Cond, _Tp>::type;
+      |     ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/enable_if.h:32:1: note: candidate found by name lookup is 'std::__1::enable_if_t'
+   32 | using enable_if_t = typename enable_if<_Bp, _Tp>::type;
+      | ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:366:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/hypot.h:98:12: error: reference to 'is_same_v' is ambiguous
+   98 |       std::is_same_v<_A1, __result_type> && std::is_same_v<_A2, __result_type> && std::is_same_v<_A3, __result_type>));
+      |            ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:3521:25: note: candidate found by name lookup is 'std::is_same_v'
+ 3521 |   inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                         ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/is_same.h:26:23: note: candidate found by name lookup is 'std::__1::is_same_v'
+   26 | inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                       ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:366:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/hypot.h:98:12: error: reference to 'is_same_v' is ambiguous
+   98 |       std::is_same_v<_A1, __result_type> && std::is_same_v<_A2, __result_type> && std::is_same_v<_A3, __result_type>));
+      |            ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:3521:25: note: candidate found by name lookup is 'std::is_same_v'
+ 3521 |   inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                         ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/is_same.h:26:23: note: candidate found by name lookup is 'std::__1::is_same_v'
+   26 | inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                       ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:366:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/hypot.h:98:50: error: reference to 'is_same_v' is ambiguous
+   98 |       std::is_same_v<_A1, __result_type> && std::is_same_v<_A2, __result_type> && std::is_same_v<_A3, __result_type>));
+      |                                                  ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:3521:25: note: candidate found by name lookup is 'std::is_same_v'
+ 3521 |   inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                         ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/is_same.h:26:23: note: candidate found by name lookup is 'std::__1::is_same_v'
+   26 | inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                       ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:366:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/hypot.h:98:50: error: reference to 'is_same_v' is ambiguous
+   98 |       std::is_same_v<_A1, __result_type> && std::is_same_v<_A2, __result_type> && std::is_same_v<_A3, __result_type>));
+      |                                                  ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:3521:25: note: candidate found by name lookup is 'std::is_same_v'
+ 3521 |   inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                         ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/is_same.h:26:23: note: candidate found by name lookup is 'std::__1::is_same_v'
+   26 | inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                       ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:366:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/hypot.h:98:88: error: reference to 'is_same_v' is ambiguous
+   98 |       std::is_same_v<_A1, __result_type> && std::is_same_v<_A2, __result_type> && std::is_same_v<_A3, __result_type>));
+      |                                                                                        ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:3521:25: note: candidate found by name lookup is 'std::is_same_v'
+ 3521 |   inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                         ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/is_same.h:26:23: note: candidate found by name lookup is 'std::__1::is_same_v'
+   26 | inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                       ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+In file included from /nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:366:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/hypot.h:98:88: error: reference to 'is_same_v' is ambiguous
+   98 |       std::is_same_v<_A1, __result_type> && std::is_same_v<_A2, __result_type> && std::is_same_v<_A3, __result_type>));
+      |                                                                                        ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:3521:25: note: candidate found by name lookup is 'std::is_same_v'
+ 3521 |   inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                         ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/is_same.h:26:23: note: candidate found by name lookup is 'std::__1::is_same_v'
+   26 | inline constexpr bool is_same_v = __is_same(_Tp, _Up);
+      |                       ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:405:27: error: reference to '__enable_if_t' is ambiguous
+  405 | template <class _A1, std::__enable_if_t<std::is_integral<_A1>::value, int> = 0>
+      |                           ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:138:5: note: candidate found by name lookup is 'std::__enable_if_t'
+  138 |     using __enable_if_t = typename enable_if<_Cond, _Tp>::type;
+      |     ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/enable_if.h:28:1: note: candidate found by name lookup is 'std::__1::__enable_if_t'
+   28 | using __enable_if_t _LIBCPP_NODEBUG = typename enable_if<_Bp, _Tp>::type;
+      | ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:47:
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/math.h:405:46: error: reference to 'is_integral' is ambiguous
+  405 | template <class _A1, std::__enable_if_t<std::is_integral<_A1>::value, int> = 0>
+      |                                              ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/type_traits:461:12: note: candidate found by name lookup is 'std::is_integral'
+  461 |     struct is_integral
+      |            ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__type_traits/is_integral.h:53:29: note: candidate found by name lookup is 'std::__1::is_integral'
+   53 | struct _LIBCPP_TEMPLATE_VIS is_integral : _BoolConstant<__is_integral(_Tp)> {};
+      |                             ^
+In file included from /home/wyattgill/Github/poe_overlay/app/main.cpp:2:
+In file included from /home/wyattgill/Github/poe_overlay/include/httplib.h:298:
+In file included from /nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/random:40:
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:93:3: error: declaration conflicts with target of using declaration already in scope
+   93 |   acos(float __x)
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/inverse_trigonometric_functions.h:29:36: note: target of using declaration
+   29 | inline _LIBCPP_HIDE_FROM_ABI float acos(float __x) _NOEXCEPT { return __builtin_acosf(__x); }
+      |                                    ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:89:11: note: using declaration
+   89 |   using ::acos;
+      |           ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:97:3: error: declaration conflicts with target of using declaration already in scope
+   97 |   acos(long double __x)
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/inverse_trigonometric_functions.h:36:42: note: target of using declaration
+   36 | inline _LIBCPP_HIDE_FROM_ABI long double acos(long double __x) _NOEXCEPT { return __builtin_acosl(__x); }
+      |                                          ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:89:11: note: using declaration
+   89 |   using ::acos;
+      |           ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:112:3: error: declaration conflicts with target of using declaration already in scope
+  112 |   asin(float __x)
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/inverse_trigonometric_functions.h:45:36: note: target of using declaration
+   45 | inline _LIBCPP_HIDE_FROM_ABI float asin(float __x) _NOEXCEPT { return __builtin_asinf(__x); }
+      |                                    ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:108:11: note: using declaration
+  108 |   using ::asin;
+      |           ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:116:3: error: declaration conflicts with target of using declaration already in scope
+  116 |   asin(long double __x)
+      |   ^
+/nix/store/742skqva7i8x3n3islzc2gs7rvs1sp8z-libcxx-19.1.7-dev/include/c++/v1/__math/inverse_trigonometric_functions.h:52:42: note: target of using declaration
+   52 | inline _LIBCPP_HIDE_FROM_ABI long double asin(long double __x) _NOEXCEPT { return __builtin_asinl(__x); }
+      |                                          ^
+/nix/store/82kmz7r96navanrc2fgckh2bamiqrgsw-gcc-14.3.0/include/c++/14.3.0/cmath:108:11: note: using declaration
+  108 |   using ::asin;
+      |           ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+ninja: build stopped: subcommand failed.
