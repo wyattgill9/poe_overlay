@@ -2,14 +2,15 @@ cmake_minimum_required(VERSION 3.31)
 
 project(poe_tracker VERSION 1.0 LANGUAGES CXX)
 
+set(CMAKE_C_COMPILER clang)
+set(CMAKE_CXX_COMPILER clang++)
+
 set(SOURCES
     src/passive_tree.cpp
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
-
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 add_library(poe_tracker ${SOURCES})
