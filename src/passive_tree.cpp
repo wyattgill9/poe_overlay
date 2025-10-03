@@ -1,5 +1,4 @@
 #include "passive_tree.h"
-#include <vector>
 
 void PassiveTree::add_node(NodeId id, const std::string& name, NodeType type) {
     graph_.emplace_back(id, name, type);
