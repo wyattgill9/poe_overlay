@@ -25,5 +25,8 @@ set_target_properties(poe_tracker PROPERTIES
 find_package(OpenSSL REQUIRED)
 target_link_libraries(poe_tracker PUBLIC OpenSSL::SSL OpenSSL::Crypto)
 
+# find_package(Boost REQUIRED)
+# target_link_libraries(poe_tracker PUBLIC Boost::headers)
+
 add_executable(main app/main.cpp)
 target_link_libraries(main PRIVATE poe_tracker)
