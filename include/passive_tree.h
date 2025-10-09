@@ -2,7 +2,11 @@
 #include <string>
 #include <vector>
 
-using NodeId = int;
+#include "base.hpp"
+
+using namespace base::types;
+
+using NodeId = i32;
 
 enum class NodeType {
     Normal,

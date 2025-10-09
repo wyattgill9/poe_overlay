@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.31)
 
-project(poe_tracker VERSION 1.0 LANGUAGES CXX)
+project(poe_overlay VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
@@ -9,24 +9,26 @@ set(SOURCES
     src/passive_tree.cpp
 )
 
-add_library(poe_tracker ${SOURCES})
+add_library(poe_overlay ${SOURCES})
 
-target_include_directories(poe_tracker
+target_include_directories(poe_overlay
     PUBLIC
         ${PROJECT_SOURCE_DIR}/include
 )
 
-set_target_properties(poe_tracker PROPERTIES
-    CXX_STANDARD 23
-    CXX_STANDARD_REQUIRED YES
-    CXX_EXTENSIONS NO
-)
+target_compile_features(poe_overlay PUBLIC cxx_std_23)
 
+# HTTPS
 find_package(OpenSSL REQUIRED)
-target_link_libraries(poe_tracker PUBLIC OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(poe_overlay PUBLIC OpenSSL::SSL OpenSSL::Crypto)
+
+# Containers
+find_package(absl CONFIG REQUIRED)
+target_link_libraries(poe_overlay PRIVATE absl::flat_hash_map)
 
 # find_package(Boost REQUIRED)
-# target_link_libraries(poe_tracker PUBLIC Boost::headers)
+# target_link_libraries(poe_overlay PUBLIC Boost::headers)
 
 add_executable(main app/main.cpp)
-target_link_libraries(main PRIVATE poe_tracker)
+target_link_libraries(main PRIVATE poe_overlay)
+target_compile_features(main PRIVATE cxx_std_23)
