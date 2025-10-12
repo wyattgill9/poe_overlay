@@ -4,15 +4,14 @@
 #include <cstddef>
 #include <cstdint>
 #include <atomic>
-#include <expected>
 #include <iostream>
 #include <optional>
 #include <concepts>
 #include <thread>
 #include <functional>
 #include <stdexcept>
+#include <type_traits>
 #include <utility>
-#include <fstream>
 
 namespace detail {  
 
@@ -20,6 +19,9 @@ template<typename T>
 concept Display = requires(T t) {
     { std::cout << t } -> std::same_as<std::ostream&>;
 };
+
+template<typename T>
+concept IsPointer = std::is_pointer_v<T>;
 
 //
 // Created by Anders Cedronius on 2023-06-27.
@@ -71,7 +73,7 @@ private:
 namespace base {
 
 namespace types {
-    
+
 using u64 = uint64_t;
 using u32 = uint32_t;
 using u16 = uint16_t;
@@ -96,11 +98,11 @@ public:
     Option(const T& value) : inner(value)            {}
 
     bool is_some() {
-        return inner;
+        return inner.has_value();
     }
 
     bool is_none() {
-        return !inner;
+        return !inner.has_value();
     }
 
     T& unwrap() {
@@ -113,7 +115,7 @@ public:
     }
 
     operator bool() const {
-        return inner;
+        return inner.has_value();
     }
 
     T& operator*() {
@@ -127,26 +129,9 @@ Option<T> None() { return Option<T>{}; }
 
 };
 
-namespace io {
-    using namespace base::types;
-    
+namespace io {   
     void println(detail::Display auto d) {
         std::cout << d << "\n";
-    }
-
-    inline std::expected<void, std::string> write_bytes(const std::string& path, const std::vector<std::byte>& data) {
-        std::ofstream file(path, std::ios::binary | std::ios::trunc);
-        if (!file.is_open()) {
-            return std::unexpected("Failed to open file: " + path);
-        }
-        
-        file.write(reinterpret_cast<const char*>(data.data()), data.size());
-        
-        if (!file.good()) {
-            return std::unexpected("Failed to write to file: " + path);
-        }
-        
-        return {};
     }
 };
 
@@ -158,7 +143,7 @@ using namespace base::types;
 //
 // ---- MY WRAPPER ----
 
-template<typename T, u64 SIZE = 1023, u64 CACHE_LINE = 64>
+template<detail::IsPointer T, u64 SIZE = 1023, u64 CACHE_LINE = 64>
 struct BoundedPointerSPSC {
 private:
     detail::FastQueue<T, SIZE, CACHE_LINE> queue;
@@ -178,13 +163,15 @@ public:
     void push(Args&&... args) {
         queue.push(std::forward<Args>(args)...);
     }
-
+    
     Option<T> pop() {
         T item;
         queue.pop(item);
+
         if (item == nullptr && stopped) {
             return None<T>();
         }
+
         return Some(item);
     }
 
@@ -223,3 +210,4 @@ public:
 };
 
 };
+

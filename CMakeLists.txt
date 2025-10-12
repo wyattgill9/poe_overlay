@@ -23,8 +23,8 @@ find_package(OpenSSL REQUIRED)
 target_link_libraries(poe_overlay PUBLIC OpenSSL::SSL OpenSSL::Crypto)
 
 # Containers
-find_package(absl CONFIG REQUIRED)
-target_link_libraries(poe_overlay PRIVATE absl::flat_hash_map)
+# find_package(absl CONFIG REQUIRED)
+# target_link_libraries(poe_overlay PRIVATE absl::flat_hash_map)
 
 # find_package(Boost REQUIRED)
 # target_link_libraries(poe_overlay PUBLIC Boost::headers)

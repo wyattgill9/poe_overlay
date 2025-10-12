@@ -1,334 +1,97 @@
-{
-  "ascendancyTree": {
-    "priorityList": [
-      {
-        "description": "passive-ascendancyranger1notable4",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeWindward.avif",
-        "name": "Wind Ward",
-        "slug": "node-5817",
-        "type": "ASCENDANCY_LARGE"
-      },
-      {
-        "description": "passive-ascendancyranger1notable3",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeTailwind.avif",
-        "name": "Gathering Winds",
-        "slug": "node-30",
-        "type": "ASCENDANCY_LARGE"
-      },
-      {
-        "description": "passive-ascendancyranger1notable1",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeGrantsTwoAdditionalProjectiles.avif",
-        "name": "Endless Munitions",
-        "slug": "node-12033",
-        "type": "ASCENDANCY_LARGE"
-      },
-      {
-        "description": "passive-ascendancyranger1notable2-choice",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeProjectileDamageChoose.avif",
-        "name": "Projectile Proximity Specialisation",
-        "slug": "node-42416",
-        "type": "CHOICE"
-      }
-    ],
-    "selectedSlugs": [
-      "node-46990",
-      "node-5817",
-      "node-29871",
-      "node-30",
-      "node-3987",
-      "node-12033",
-      "node-46854",
-      "node-42416",
-      "node-61461",
-      "node-41875"
-    ]
-  },
-  "attributeNodes": [
-    {
-      "attribute": "int",
-      "nodeSlug": "node-14262"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-41017"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-38143"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-16460"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-43746"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-6772"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-24825"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-29479"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-13411"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-34136"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-54984"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-34015"
-    },
-    {
-      "attribute": "any",
-      "nodeSlug": "node-24287"
-    }
-  ],
-  "mainTree": {
-    "priorityList": [
-      {
-        "description": "passive-ranger-huntress-notable2",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/Hunter.avif",
-        "name": "Honed Instincts",
-        "slug": "node-28992",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-exploiting-elemental-ailments10",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/ClawsOfTheMagpie.avif",
-        "name": "Vile Wounds",
-        "slug": "node-30695",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-quivers4",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/attackspeedbow.avif",
-        "name": "Master Fletching",
-        "slug": "node-30341",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-elemental56",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/ElementalDamagewithAttacks2.avif",
-        "name": "Primal Sundering",
-        "slug": "node-50884",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-elemental32",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/elementaldamage.avif",
-        "name": "Harness the Elements",
-        "slug": "node-12611",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-evasion31",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/evade.avif",
-        "name": "Escape Velocity",
-        "slug": "node-17854",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-elemental-attacks8",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/ElementalDamagewithAttacks2.avif",
-        "name": "Catalysis",
-        "slug": "node-31433",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-exploiting-elemental-ailments15",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/ElementalDamagenode.avif",
-        "name": "Exploit",
-        "slug": "node-39050",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-elemental-attacks10",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/ElementalDamagewithAttacks2.avif",
-        "name": "Forces of Nature",
-        "slug": "node-3985",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-lightning35",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/LightningDamagenode.avif",
-        "name": "Flash Storm",
-        "slug": "node-12337",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-movement-speed9",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/increasedrunspeeddex.avif",
-        "name": "Acceleration",
-        "slug": "node-43082",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-heralds16-",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/HeraldBuffEffectNode2.avif",
-        "name": "Coming Calamity",
-        "slug": "node-28044",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-companions2",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/CompanionsNotable1.avif",
-        "name": "Inspiring Ally",
-        "slug": "node-16150",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-evasion32",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/evade.avif",
-        "name": "Enhanced Reflexes",
-        "slug": "node-51707",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-evasion33",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/evade.avif",
-        "name": "Beastial Skin",
-        "slug": "node-59720",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-dexterity102",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/plusdexterity.avif",
-        "name": "Proficiency",
-        "slug": "node-58397",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-attack5",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/damage.avif",
-        "name": "Maiming Strike",
-        "slug": "node-41580",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-azmerianimals42",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/AzmeriVividCatNotable.avif",
-        "name": "The Wild Cat",
-        "slug": "node-22811",
-        "type": "NOTABLE"
-      },
-      {
-        "description": "passive-deflect58",
-        "iconURL": "https://cdn.mobalytics.gg/assets/poe-2/images/game/Art/2DArt/SkillIcons/passives/EvasionNode.avif",
-        "name": "Trained Deflection",
-        "slug": "node-52180",
-        "type": "NOTABLE"
-      }
-    ],
-    "selectedSlugs": [
-      "node-56651",
-      "node-35234",
-      "node-6789",
-      "node-4313",
-      "node-28992",
-      "node-13783",
-      "node-30695",
-      "node-19808",
-      "node-60505",
-      "node-28050",
-      "node-63888",
-      "node-61356",
-      "node-12498",
-      "node-30341",
-      "node-26068",
-      "node-37389",
-      "node-28061",
-      "node-35878",
-      "node-50884",
-      "node-35901",
-      "node-41096",
-      "node-25700",
-      "node-32155",
-      "node-12611",
-      "node-62464",
-      "node-17854",
-      "node-60735",
-      "node-11825",
-      "node-42794",
-      "node-31433",
-      "node-21495",
-      "node-43044",
-      "node-7526",
-      "node-21572",
-      "node-6660",
-      "node-39050",
-      "node-61976",
-      "node-18923",
-      "node-17118",
-      "node-62510",
-      "node-56818",
-      "node-51336",
-      "node-64140",
-      "node-3985",
-      "node-53965",
-      "node-12337",
-      "node-54984",
-      "node-34015",
-      "node-24287",
-      "node-5305",
-      "node-3431",
-      "node-43082",
-      "node-48116",
-      "node-2582",
-      "node-56847",
-      "node-28835",
-      "node-28044",
-      "node-27705",
-      "node-39495",
-      "node-46386",
-      "node-39986",
-      "node-57933",
-      "node-16150",
-      "node-48773",
-      "node-44776",
-      "node-14539",
-      "node-38728",
-      "node-51707",
-      "node-65091",
-      "node-3209",
-      "node-59720",
-      "node-2334",
-      "node-58397",
-      "node-34702",
-      "node-36576",
-      "node-25055",
-      "node-41580",
-      "node-8789",
-      "node-16938",
-      "node-32943",
-      "node-42118",
-      "node-43102",
-      "node-42998",
-      "node-40333",
-      "node-24178",
-      "node-55275",
-      "node-12890",
-      "node-23253",
-      "node-15625",
-      "node-22811",
-      "node-53272",
-      "node-2560",
-      "node-20044",
-      "node-30736",
-      "node-52180"
-    ]
-  }
-}
+[
+  "node-56651",
+  "node-35234",
+  "node-6789",
+  "node-4313",
+  "node-28992",
+  "node-13783",
+  "node-30695",
+  "node-19808",
+  "node-60505",
+  "node-28050",
+  "node-63888",
+  "node-61356",
+  "node-12498",
+  "node-30341",
+  "node-26068",
+  "node-37389",
+  "node-28061",
+  "node-35878",
+  "node-50884",
+  "node-35901",
+  "node-41096",
+  "node-25700",
+  "node-32155",
+  "node-12611",
+  "node-62464",
+  "node-17854",
+  "node-60735",
+  "node-11825",
+  "node-42794",
+  "node-31433",
+  "node-21495",
+  "node-43044",
+  "node-7526",
+  "node-21572",
+  "node-6660",
+  "node-39050",
+  "node-61976",
+  "node-18923",
+  "node-17118",
+  "node-62510",
+  "node-56818",
+  "node-51336",
+  "node-64140",
+  "node-3985",
+  "node-53965",
+  "node-12337",
+  "node-54984",
+  "node-34015",
+  "node-24287",
+  "node-5305",
+  "node-3431",
+  "node-43082",
+  "node-48116",
+  "node-2582",
+  "node-56847",
+  "node-28835",
+  "node-28044",
+  "node-27705",
+  "node-39495",
+  "node-46386",
+  "node-39986",
+  "node-57933",
+  "node-16150",
+  "node-48773",
+  "node-44776",
+  "node-14539",
+  "node-38728",
+  "node-51707",
+  "node-65091",
+  "node-3209",
+  "node-59720",
+  "node-2334",
+  "node-58397",
+  "node-34702",
+  "node-36576",
+  "node-25055",
+  "node-41580",
+  "node-8789",
+  "node-16938",
+  "node-32943",
+  "node-42118",
+  "node-43102",
+  "node-42998",
+  "node-40333",
+  "node-24178",
+  "node-55275",
+  "node-12890",
+  "node-23253",
+  "node-15625",
+  "node-22811",
+  "node-53272",
+  "node-2560",
+  "node-20044",
+  "node-30736",
+  "node-52180"
+]

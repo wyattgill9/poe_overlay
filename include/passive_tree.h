@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "base.hpp"
-
 using namespace base::types;
 
 using NodeId = i32;
@@ -21,9 +20,12 @@ struct PassiveNode {
     NodeType type;
     std::vector<NodeId> neighbors;
 
-    PassiveNode(NodeId id, std::string name, NodeType type = NodeType::Normal)
-        : id(id), name(std::move(name)), type(type) {}
+    // PassiveNode(NodeId id, std::string name, NodeType type = NodeType::Normal)
+        // : id(id), name(std::move(name)), type(type) {}
 };
+
+// todo make global node_map
+static std::unordered_map<NodeId, PassiveNode> global_node_map;
 
 class PassiveTree {
 private:
@@ -32,7 +34,7 @@ private:
 public:
     PassiveTree() = default;
 
-    void add_node(NodeId id, const std::string& name, NodeType type = NodeType::Normal);
+    void add_node(NodeId id);
     void connect_nodes(NodeId a, NodeId b);
 };
 
