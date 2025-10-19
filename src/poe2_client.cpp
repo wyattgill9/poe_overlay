@@ -13,10 +13,9 @@ POE2OverlayHTTPClient::fetch_content() {
     auto res = client_.Post("/api/poe-2/v1/graphql/query", headers, json, "application/json");
 
     if(!res) {        
-        auto err = res.error();
+        std::string error = "HTTP request failed!" + httplib::to_string(res.error());
+        logger_->log(LogLevel::ERROR, error);
 
-        // io::println("HTTP request failed!");
-        // io::println("Error: " + httplib::to_string(err));
         return std::unexpected(POE2OverlayError::JSON_RESPONSE_ERROR);
     }
 
