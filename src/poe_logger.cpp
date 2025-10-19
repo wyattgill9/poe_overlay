@@ -1,5 +1,6 @@
-#include "poe_logger.h"
 #include <type_traits>
+
+#include "poe_logger.h"
 
 LogMessage::LogMessage(std::string data, LogLevel level)
     : level(level), data(data) {}

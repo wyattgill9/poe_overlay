@@ -10,7 +10,7 @@
 
 enum class POE2OverlayError : u8 {
     PASSIVE_TREE_UNKNOWN_NODE_ID = 0,
-    JSON_RESPONSE_ERROR
+    JSON_RESPONSE_ERROR          = 1,
 };
 
 using NodeId = i32;

@@ -15,28 +15,7 @@ auto main() -> int {
         return 0;
     }
 
-    auto nodes_json = body.value()["data"]["game"]["documents"]["userGeneratedDocumentBySlug"]
-                ["data"]["data"]["buildVariants"]["values"][0]["passiveTree"]
-                ["mainTree"]["selectedSlugs"];
-
-    if(!nodes_json.is_array()) {
-        return 0;
-    }
-
-    std::vector<std::string> unparsed_nodes = nodes_json.get<std::vector<std::string>>();
-
-    std::vector<NodeId> node_ids;
-    std::unordered_map<NodeId, PassiveNode> node_map;
-              
-    for(auto node : unparsed_nodes) {
-        auto pos = node.find("-");
-        node_ids.push_back(std::stoi(node.substr(pos + 1)));         
-    }
-
-    for(auto node_id : node_ids) {
-        auto _ = tree.add_node(node_id);
-        io::println(node_id);
-    }
-        
+    client.parse_content(body.value());
+          
     return 0;
 }
