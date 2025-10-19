@@ -33,6 +33,8 @@ class FastQueue {
     static_assert((RING_BUFFER_SIZE & (RING_BUFFER_SIZE + 1)) == 0, "RING_BUFFER_SIZE must be a number of contiguous bits set from LSB. Example: 0b00001111 not 0b01001111");
 
 public:
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-volatile"
     template<typename... Args>
     void push(Args&&... args) noexcept {
         while (mRingBuffer[mWritePosition & RING_BUFFER_SIZE].mObj) if (mExitThreadSemaphore) [[unlikely]] return;
@@ -56,6 +58,8 @@ public:
         mExitThreadSemaphore = true;
     }
 
+#pragma GCC diagnostic pop
+
 private:
      struct AlignedDataObjects {
         alignas(L1_CACHE_LNE * 2) T mObj = nullptr;
@@ -71,8 +75,6 @@ private:
 };
 
 namespace base {
-
-namespace types {
 
 using u64 = uint64_t;
 using u32 = uint32_t;
@@ -127,8 +129,6 @@ public:
 template<typename T>
 Option<T> None() { return Option<T>{}; }
 
-};
-
 namespace io {   
     void println(detail::Display auto d) {
         std::cout << d << "\n";
@@ -136,8 +136,6 @@ namespace io {
 };
 
 namespace containers {
-
-using namespace base::types;
 
 // ----- SPSC QUEUE -----
 //
@@ -209,5 +207,9 @@ public:
 
 };
 
+template<typename To>
+constexpr auto implicit_cast = [](To from) {
+    return from;
 };
 
+};

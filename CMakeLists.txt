@@ -7,6 +7,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 set(SOURCES
     src/passive_tree.cpp
+    src/poe2_client.cpp
+    src/poe_logger.cpp
 )
 
 add_library(poe_overlay ${SOURCES})
@@ -14,6 +16,7 @@ add_library(poe_overlay ${SOURCES})
 target_include_directories(poe_overlay
     PUBLIC
         ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/external
 )
 
 target_compile_features(poe_overlay PUBLIC cxx_std_23)

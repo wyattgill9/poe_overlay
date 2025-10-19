@@ -1,9 +1,17 @@
 #pragma once
+
+#include <expected>
 #include <string>
 #include <vector>
 
-#include "base.hpp"
-using namespace base::types;
+#include "poe_overlay.h"
+
+// namespace poe {   
+
+enum class POE2OverlayError : u8 {
+    PASSIVE_TREE_UNKNOWN_NODE_ID = 0,
+    JSON_RESPONSE_ERROR
+};
 
 using NodeId = i32;
 
@@ -15,36 +23,21 @@ enum class NodeType {
 };
 
 struct PassiveNode {
-    NodeId id;
+    NodeId      id;
     std::string name;
-    NodeType type;
+    NodeType    type { NodeType::Normal };
+
     std::vector<NodeId> neighbors;
-
-    // PassiveNode(NodeId id, std::string name, NodeType type = NodeType::Normal)
-        // : id(id), name(std::move(name)), type(type) {}
 };
-
-// todo make global node_map
-static std::unordered_map<NodeId, PassiveNode> global_node_map;
 
 class PassiveTree {
+public:
+    std::expected<void, POE2OverlayError> add_node(NodeId id);
+    void connect_nodes(NodeId a, NodeId b);
+
 private:
     std::vector<PassiveNode> graph_;
-
-public:
-    PassiveTree() = default;
-
-    void add_node(NodeId id);
-    void connect_nodes(NodeId a, NodeId b);
+    static inline std::unordered_map<NodeId, PassiveNode> global_node_map_;
 };
 
-class PassiveTreePath {
-private:
-    std::vector<NodeId> path_;
-
-public:
-    explicit PassiveTreePath(std::vector<NodeId> path)
-        : path_(std::move(path)) {}
-
-    [[nodiscard]] const std::vector<NodeId>& nodes() const noexcept { return path_; }
-};
+// };

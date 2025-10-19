@@ -1,103 +1,21 @@
-#include <unordered_map>
-#define CPPHTTPLIB_OPENSSL_SUPPORT
-#include "httplib.h"
-#include "json.hpp"
-using json = nlohmann::json;
-
-#include "base.hpp"
-using namespace base;
-
 #include "passive_tree.h"
+#include "poe2_client.h"
+#include "poe_logger.h"
 
-// very rough, will refactor completly later;
-auto main() -> i32 {
+#include <memory>
+
+auto main() -> int {
+    auto logger = std::make_shared<POE2OverlayLogger>("log.txt");
     PassiveTree tree;
     
-    std::string build_name = "lightning-arrow-farmer-fubgun"; 
-    httplib::SSLClient cli("mobalytics.gg", 443);
+    auto client = POE2OverlayHTTPClient("lightning-arrow-farmer-fubgun", logger);
+    auto body = client.fetch_content();
 
-    cli.set_follow_location(true);
-    cli.set_connection_timeout(50, 0); 
-    cli.set_read_timeout(30, 0);
-    cli.set_write_timeout(30, 0);
-    cli.enable_server_certificate_verification(false);
-
-    std::string query = R"(query Poe2PassiveTreeQuery($input: Poe2UserGeneratedDocumentInputBySlug!) {
-      game: poe2 {
-        documents {
-          userGeneratedDocumentBySlug(input: $input) {
-            data {
-              data {
-                buildVariants {
-                  values {
-                    passiveTree {
-                      mainTree {
-                        selectedSlugs
-                        priorityList {
-                          slug
-                          name
-                          type
-                          iconURL
-                          description
-                        }
-                      }
-                      ascendancyTree {
-                        selectedSlugs
-                        priorityList {
-                          slug
-                          name
-                          type
-                          iconURL
-                          description
-                        }
-                      }
-                      attributeNodes { attribute nodeSlug }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    })";
-    
-    json j;
-    j["query"] = query;
-    j["variables"] = {
-      {"input", {
-        // {"slug", "lightning-arrow-farmer-fubgun"},
-        {"slug", build_name},
-        {"type", "builds"},
-        {"widgetsOverride", json::array()}
-      }}
-    };
-    
-    std::string json_body = j.dump();
-    
-    httplib::Headers headers = {
-        { "Content-Type", "application/json" },
-        { "x-apollo-operation-name", "Poe2PassiveTreeQuery" },
-        { "Origin", "https://mobalytics.gg" },
-        { "Referer", "https://mobalytics.gg/poe-2/builds/" + build_name },
-        // { "Referer", "https://mobalytics.gg/poe-2/builds/lightning-arrow-farmer-fubgun" },
-        { "User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
-    };
-        
-    auto res = cli.Post("/api/poe-2/v1/graphql/query", headers, json_body, "application/json");
-
-    
-    if(!res) {        
-        auto err = res.error();
-        io::println("HTTP request failed!");
-        io::println("Error: " + httplib::to_string(err));
+    if(!body.has_value()) {
         return 0;
     }
 
-    json body = json::parse(res->body);
-
-    // todo count number of build varients
-    auto nodes_json = body["data"]["game"]["documents"]["userGeneratedDocumentBySlug"]
+    auto nodes_json = body.value()["data"]["game"]["documents"]["userGeneratedDocumentBySlug"]
                 ["data"]["data"]["buildVariants"]["values"][0]["passiveTree"]
                 ["mainTree"]["selectedSlugs"];
 
@@ -116,7 +34,8 @@ auto main() -> i32 {
     }
 
     for(auto node_id : node_ids) {
-        tree.add_node(node_id);
+        auto _ = tree.add_node(node_id);
+        io::println(node_id);
     }
         
     return 0;
