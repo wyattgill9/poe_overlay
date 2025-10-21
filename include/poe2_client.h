@@ -2,31 +2,53 @@
 
 #include <expected>
 #include <vector>
+
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #include "httplib.h"
-
-#include <memory>
-#include <string_view>
 
 #include "poe_logger.h"
 #include "poe_overlay.h"
 #include "passive_tree.h"
 
-class POE2OverlayHTTPClient {
-public:
-    POE2OverlayHTTPClient(std::string_view build_name, std::shared_ptr<POE2OverlayLogger> logger);
-
-    std::expected<json, POE2OverlayError> fetch_content(); 
-    std::expected<std::vector<NodeId>, POE2OverlayError> parse_content(json json_body);
-
-private:
-    std::shared_ptr<POE2OverlayLogger> logger_;
-    std::string build_name_;
-    mutable httplib::SSLClient client_;
+enum class POE2OverlayHTTPError : u8 {
+    RESPONSE_UNAVAILABLE = 0,
+    JSON_PARSE_ERROR = 1,
+    RESPONSE_INVALID = 2,
+    RESPONSE_MISSING_REQUIRED_FIELD = 3,
 };
 
-// core ff
-void set_client_config(httplib::SSLClient& c);
+struct HTTPRequestData {
+    std::string      body;
+    httplib::Headers headers;
+};
 
-std::pair<std::string, httplib::Headers>
-get_request_data(std::string& build_name);
+struct HTTPClientContext {
+    std::string        build_name;
+    httplib::SSLClient client;
+
+    HTTPClientContext(std::string build_name_);
+};
+
+namespace http_ops {
+    void configure_client(httplib::SSLClient& client);
+    
+    HTTPRequestData create_request(const std::string& build_name);   
+
+    std::expected<json, POE2OverlayHTTPError> 
+    send_request(HTTPClientContext& client_data, POE2OverlayLogger& logger);
+    
+    std::expected<std::vector<NodeId>, POE2OverlayHTTPError>
+    extract_passive_nodes(const json& res_body, POE2OverlayLogger& logger);
+}
+
+// Façade
+class POE2OverlayHTTPClient {
+public:
+    POE2OverlayHTTPClient(std::string build_name_, POE2OverlayLogger& logger_);
+
+    std::expected<std::vector<NodeId>, POE2OverlayHTTPError> fetch_nodes();
+
+private:
+    HTTPClientContext  ctx;
+    POE2OverlayLogger& logger;
+};

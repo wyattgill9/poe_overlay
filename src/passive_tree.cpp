@@ -7,11 +7,11 @@ void PassiveTree::connect_nodes(NodeId a, NodeId b) {
     }
 }
 
-std::expected<void, POE2OverlayError> PassiveTree::add_node(NodeId id) {
+std::expected<void, PassiveTreeError> PassiveTree::add_node(NodeId id) {
     if (auto it = global_node_map_.find(id); it != global_node_map_.end()) {
         graph_.push_back(it->second);
     } else {
-        return std::unexpected(POE2OverlayError::PASSIVE_TREE_UNKNOWN_NODE_ID);
+        return std::unexpected(PassiveTreeError::PASSIVE_TREE_UNKNOWN_NODE_ID);
     }
     return {};
 }

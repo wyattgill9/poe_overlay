@@ -1,21 +1,22 @@
-#include "passive_tree.h"
+// #include "passive_tree.h"
+#include "base.hpp"
+#include <print>
 #include "poe2_client.h"
 #include "poe_logger.h"
 
-#include <memory>
 
 auto main() -> int {
-    auto logger = std::make_shared<POE2OverlayLogger>("log.txt");
-    PassiveTree tree;
+    auto logger = POE2OverlayLogger("log.txt");
     
-    auto client = POE2OverlayHTTPClient("lightning-arrow-farmer-fubgun", logger);
-    auto body = client.fetch_content();
-
-    if(!body.has_value()) {
+    POE2OverlayHTTPClient client = POE2OverlayHTTPClient("lightning-arrow-farmer-fubgun", logger);
+    auto node_ids = client.fetch_nodes();
+    if(!node_ids.has_value()) {
         return 0;
     }
 
-    client.parse_content(body.value());
-          
+    for(const auto& node_id : node_ids.value()) {
+        io::println(node_id);
+    }
+
     return 0;
 }

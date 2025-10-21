@@ -9,6 +9,4 @@ using json = nlohmann::json;
 #include "base.hpp"
 using namespace base;
 
-namespace poe {
-    
-};
+namespace poe {};
