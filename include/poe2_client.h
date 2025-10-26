@@ -34,11 +34,11 @@ namespace http_ops {
     
     HTTPRequestData create_request(const std::string& build_name);   
 
-    std::expected<json, POE2OverlayHTTPError> 
+    std::expected<Document, POE2OverlayHTTPError> 
     send_request(HTTPClientContext& client_data, POE2OverlayLogger& logger);
     
     std::expected<std::vector<NodeId>, POE2OverlayHTTPError>
-    extract_passive_nodes(const json& res_body, POE2OverlayLogger& logger);
+    extract_passive_nodes(const Document& res_body, POE2OverlayLogger& logger);
 }
 
 // Façade

@@ -1,13 +1,9 @@
-#include "base.hpp"
-#include <expected>
 #include <openssl/err.h>
-
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #include "httplib.h"
 
 #include "passive_tree.h"
 #include "poe2_client.h"
-#include "poe_overlay.h"
 
 namespace http_ops {
 
@@ -18,8 +14,16 @@ void configure_client(httplib::SSLClient& c) {
     c.set_write_timeout(30, 0);
 }
 
+std::string to_string(const Document& o) {
+	StringBuffer sb;
+	Writer<StringBuffer> writer(sb);
+	o.Accept(writer);
+	return sb.GetString();
+}
+
+
 HTTPRequestData create_request(const std::string& build_name) { 
-    std::string query = R"(query Poe2PassiveTreeQuery($input: Poe2UserGeneratedDocumentInputBySlug!) {
+    const char* query = R"(query Poe2PassiveTreeQuery($input: Poe2UserGeneratedDocumentInputBySlug!) {
     game: poe2 {
     documents {
       userGeneratedDocumentBySlug(input: $input) {
@@ -59,16 +63,26 @@ HTTPRequestData create_request(const std::string& build_name) {
     }
     })";
 
-    json j;
-    j["query"] = query;
-    j["variables"] = {
-        {"input", {
-            {"slug", build_name},
-            {"type", "builds"},
-            {"widgetsOverride", json::array()}
-        }}
-    };
+    // Construct the actual JSON body
+    Document json_body;
+    json_body.SetObject();
+    Document::AllocatorType& allocator = json_body.GetAllocator();
 
+    json_body.AddMember("query", Value(query, allocator), allocator);
+
+    Value variables(kObjectType);
+    Value input(kObjectType);
+
+    input.AddMember("slug", Value(build_name.c_str(), allocator), allocator);
+    input.AddMember("type", "builds", allocator);
+
+    Value widgetsOverride(kArrayType);
+    input.AddMember("widgetsOverride", widgetsOverride, allocator);
+
+    variables.AddMember("input", input, allocator);
+    json_body.AddMember("variables", variables, allocator);
+
+    // JSON headers 
     static httplib::Headers headers = {
         { "Content-Type", "application/json" },
         { "x-apollo-operation-name", "Poe2PassiveTreeQuery" },
@@ -77,10 +91,10 @@ HTTPRequestData create_request(const std::string& build_name) {
         { "User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
     };
 
-    return HTTPRequestData { j.dump(), headers };
+    return HTTPRequestData { to_string(json_body), headers };
 }
 
-std::expected<json, POE2OverlayHTTPError>
+std::expected<Document, POE2OverlayHTTPError>
 send_request(HTTPClientContext& ctx, POE2OverlayLogger& logger) {
     configure_client(ctx.client);
 
@@ -98,36 +112,40 @@ send_request(HTTPClientContext& ctx, POE2OverlayLogger& logger) {
     }
 
     try {
-        return json::parse(res->body);
+        // return json::parse(res->body);
+        Document json_res;
+        json_res.Parse(res->body.c_str());
+        return json_res;
+
     } catch (...) {
         return std::unexpected(POE2OverlayHTTPError::JSON_PARSE_ERROR);
     }
 }
 
 std::expected<std::vector<NodeId>, POE2OverlayHTTPError>
-extract_passive_nodes(const json& res_body, POE2OverlayLogger& logger) {
-    // if(!res_body) {}
-    // io::println("Hell");
-
+extract_passive_nodes(const Document& res_body, POE2OverlayLogger& logger) {
     const auto& nodes_json = res_body["data"]["game"]["documents"]["userGeneratedDocumentBySlug"]
                                      ["data"]["data"]["buildVariants"]["values"][0]["passiveTree"]
                                      ["mainTree"]["selectedSlugs"];
-    if(!nodes_json.is_array()) {
+    if(!nodes_json.IsArray()) {
         return std::unexpected(POE2OverlayHTTPError::RESPONSE_MISSING_REQUIRED_FIELD);
     }
 
-    std::vector<std::string> unparsed_node_ids = nodes_json.get<std::vector<std::string>>();
-    std::vector<NodeId> node_ids;
-              
-    for(const auto& node : unparsed_node_ids) {
-        auto pos = node.find("-"); // "node-xxx"
-        node_ids.push_back(std::stoi(node.substr(pos + 1)));
-    }
+    auto view =
+        nodes_json.GetArray()
+        | rv::filter   ([](const auto& elem) { return elem.IsString();               })
+        | rv::transform([](const auto& elem) { return std::string(elem.GetString()); })
+        | rv::transform([](const std::string& s){
+              auto pos = s.find('-');
+              return static_cast<NodeId>(std::stoi(s.substr(pos + 1)));
+          });
+
+    std::vector<NodeId> node_ids(view.begin(), view.end());    
 
     return node_ids;
 }
 
-};
+}; // http_client_ops
 
 HTTPClientContext::HTTPClientContext(std::string build_name_)
     : build_name(build_name_), client(httplib::SSLClient("mobalytics.gg", 443)) {}
@@ -136,7 +154,8 @@ POE2OverlayHTTPClient::POE2OverlayHTTPClient(std::string build_name_, POE2Overla
     : ctx(HTTPClientContext(build_name_)), logger(logger_) {}
 
 std::expected<std::vector<NodeId>, POE2OverlayHTTPError>
-POE2OverlayHTTPClient::fetch_nodes() {
+POE2OverlayHTTPClient::fetch_nodes()
+{
     auto json_res = http_ops::send_request(ctx, logger);
 
     if (!json_res.has_value()) {

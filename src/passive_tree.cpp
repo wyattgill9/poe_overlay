@@ -1,17 +1,17 @@
+#include <vector>
+
 #include "passive_tree.h"
 
-void PassiveTree::connect_nodes(NodeId a, NodeId b) {
-    if (a < graph_.size() && b < graph_.size()) {
-        graph_[a].neighbors.push_back(b);
-        graph_[b].neighbors.push_back(a);
+namespace tree_opts {
+
+std::vector<PassiveNode> id_to_nodes(std::vector<NodeId> node_ids) {
+    std::vector<PassiveNode> passive_node;
+
+    for(auto& node_id : node_ids) {
+        passive_node.push_back(passive_node_id_map[node_id]);
     }
+
+    return passive_node;
 }
 
-std::expected<void, PassiveTreeError> PassiveTree::add_node(NodeId id) {
-    if (auto it = global_node_map_.find(id); it != global_node_map_.end()) {
-        graph_.push_back(it->second);
-    } else {
-        return std::unexpected(PassiveTreeError::PASSIVE_TREE_UNKNOWN_NODE_ID);
-    }
-    return {};
-}
+}; // tree_opts

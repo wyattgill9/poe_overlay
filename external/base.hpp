@@ -5,8 +5,6 @@
 #include <iostream>
 #include <concepts>
 
-namespace base {
-
 using u64 = uint64_t;
 using u32 = uint32_t;
 using u16 = uint16_t;
@@ -38,6 +36,4 @@ void println(Display auto d) {
 template<typename To>
 constexpr auto implicit_cast = [](To from) {
     return from;
-};
-
 };

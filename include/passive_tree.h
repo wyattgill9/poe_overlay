@@ -1,38 +1,40 @@
 #pragma once
 
-#include <expected>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include "poe_overlay.h"
 
-using NodeId = i32;
+using NodeId = i32; // int
 
-enum class PassiveTreeError : u8{
-    PASSIVE_TREE_UNKNOWN_NODE_ID = 0,
-};
-
-enum class NodeType {
-    Normal,
-    Notable,
-    Keystone,
-    JewelSocket
+enum class NodeType : u8 {
+    Normal      = 0,
+    Notable     = 1,
+    Keystone    = 2,
+    JewelSocket = 3,
 };
 
 struct PassiveNode {
     NodeId      id;
     std::string name;
     NodeType    type { NodeType::Normal };
-
-    std::vector<NodeId> neighbors;
 };
 
-class PassiveTree {
+// todo make this constexpr by loading it from a file in the form
+// { node_id : (id, name, NodeType) } or smt like that
+static std::unordered_map<NodeId, PassiveNode> passive_node_id_map;
+
+
+// this should be generated at compile time technically
+class PassiveNodeTree {
 public:
-    std::expected<void, PassiveTreeError> add_node(NodeId id);
-    void connect_nodes(NodeId a, NodeId b);
 
 private:
-    std::vector<PassiveNode> graph_;
-    static inline std::unordered_map<NodeId, PassiveNode> global_node_map_;
+    std::vector<PassiveNode>         graph;
+    std::vector<std::vector<NodeId>> neighbors; // neighbors[graph[i]] = list of graph's neighbors
+};
+
+namespace tree_opts {
+    std::vector<PassiveNode> id_to_nodes(std::vector<NodeId> node_ids);
 };
