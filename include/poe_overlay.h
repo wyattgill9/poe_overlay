@@ -14,4 +14,7 @@ using namespace rapidjson;
 
 #include "base.hpp"
 
+using NodeId = i32; // int
+using size_type = size_t;
+
 namespace poe {};

@@ -2,7 +2,6 @@
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #include "httplib.h"
 
-#include "passive_tree.h"
 #include "poe2_client.h"
 
 namespace http_ops {
@@ -15,12 +14,11 @@ void configure_client(httplib::SSLClient& c) {
 }
 
 std::string to_string(const Document& o) {
-	StringBuffer sb;
-	Writer<StringBuffer> writer(sb);
-	o.Accept(writer);
-	return sb.GetString();
+    StringBuffer sb;
+    Writer<StringBuffer> writer(sb);
+    o.Accept(writer);
+    return sb.GetString();
 }
-
 
 HTTPRequestData create_request(const std::string& build_name) { 
     const char* query = R"(query Poe2PassiveTreeQuery($input: Poe2UserGeneratedDocumentInputBySlug!) {
@@ -63,7 +61,6 @@ HTTPRequestData create_request(const std::string& build_name) {
     }
     })";
 
-    // Construct the actual JSON body
     Document json_body;
     json_body.SetObject();
     Document::AllocatorType& allocator = json_body.GetAllocator();
@@ -82,7 +79,6 @@ HTTPRequestData create_request(const std::string& build_name) {
     variables.AddMember("input", input, allocator);
     json_body.AddMember("variables", variables, allocator);
 
-    // JSON headers 
     static httplib::Headers headers = {
         { "Content-Type", "application/json" },
         { "x-apollo-operation-name", "Poe2PassiveTreeQuery" },
@@ -95,15 +91,15 @@ HTTPRequestData create_request(const std::string& build_name) {
 }
 
 std::expected<Document, POE2OverlayHTTPError>
-send_request(HTTPClientContext& ctx, POE2OverlayLogger& logger) {
-    configure_client(ctx.client);
-
-    HTTPRequestData req = create_request(ctx.build_name);
-
-    auto res = ctx.client.Post(
+send_request(
+    httplib::SSLClient& client,
+    const HTTPRequestData& request,
+    POE2OverlayLogger& logger
+) {
+    auto res = client.Post(
         "/api/poe-2/v1/graphql/query",
-        req.headers,
-        req.body,
+        request.headers,
+        request.body,
         "application/json"
     );
 
@@ -112,11 +108,9 @@ send_request(HTTPClientContext& ctx, POE2OverlayLogger& logger) {
     }
 
     try {
-        // return json::parse(res->body);
         Document json_res;
         json_res.Parse(res->body.c_str());
         return json_res;
-
     } catch (...) {
         return std::unexpected(POE2OverlayHTTPError::JSON_PARSE_ERROR);
     }
@@ -141,25 +135,25 @@ extract_passive_nodes(const Document& res_body, POE2OverlayLogger& logger) {
           });
 
     std::vector<NodeId> node_ids(view.begin(), view.end());    
-
     return node_ids;
 }
 
-}; // http_client_ops
+} // namespace http_ops
 
-HTTPClientContext::HTTPClientContext(std::string build_name_)
-    : build_name(build_name_), client(httplib::SSLClient("mobalytics.gg", 443)) {}
-
-POE2OverlayHTTPClient::POE2OverlayHTTPClient(std::string build_name_, POE2OverlayLogger& logger_)
-    : ctx(HTTPClientContext(build_name_)), logger(logger_) {}
-
+// Main API 
 std::expected<std::vector<NodeId>, POE2OverlayHTTPError>
-POE2OverlayHTTPClient::fetch_nodes()
-{
-    auto json_res = http_ops::send_request(ctx, logger);
-
+fetch_passive_tree_nodes(
+    const std::string& build_name,
+    POE2OverlayLogger& logger
+) {
+    httplib::SSLClient client("mobalytics.gg", 443);
+    http_ops::configure_client(client);
+    
+    auto request = http_ops::create_request(build_name);
+    
+    auto json_res = http_ops::send_request(client, request, logger);
     if (!json_res.has_value()) {
-        return std::unexpected(json_res.error()); // percalate the error up
+        return std::unexpected(json_res.error());
     }
     
     return http_ops::extract_passive_nodes(json_res.value(), logger);

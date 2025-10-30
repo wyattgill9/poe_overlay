@@ -8,9 +8,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 set(SOURCES
-    src/passive_tree.cpp
+    src/poe2_passive_tree.cpp
     src/poe2_client.cpp
     src/poe_logger.cpp
+    src/build.cpp
 )
 
 add_library(poe_overlay ${SOURCES})

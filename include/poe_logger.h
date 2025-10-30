@@ -8,8 +8,9 @@
 #include "SPSCQueue.h"
 
 #include "base.hpp"
+#include "poe_overlay.h"
 
-static constexpr size_t QUEUE_CAPACITY = 100;
+static constexpr size_type QUEUE_CAPACITY = 100;
 
 enum class LogLevel : u8 {
     DEBUG = 0,
