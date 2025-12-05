@@ -23,7 +23,6 @@
 
             # libs 
             rapidjson
-            capnproto
           ];
 
           shellHook = ''
