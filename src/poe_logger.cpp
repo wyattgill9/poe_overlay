@@ -1,8 +1,11 @@
+#include <atomic>
 #include <filesystem>
+#include <fstream>
 #include <thread>
 #include <utility>
 
 #include "poe_logger.h"
+#include "SPSCQueue.h"
 
 namespace log_ops {
 
@@ -20,59 +23,47 @@ void write_entry(std::ofstream& file, const LogEntry& entry) {
     file << "[ " << level_to_string(entry.level) << " ] " << entry.msg << "\n";
 }
 
-void log(rigtorp::SPSCQueue<LogEntry>& queue, std::ofstream& file, LogLevel level, std::string_view msg) {
-    LogEntry entry { level, std::string(msg) };
-    
-    if (!queue.try_push(entry)) {
-        write_entry(file, entry);
-        file.flush();
-    }
-}
-
-} // namespace log_ops
-
-POE2OverlayLogger::POE2OverlayLogger(const std::string& filename)
-    : queue(QUEUE_CAPACITY)
-    , stop_flag(false)
-{
-    std::string log_path = "./log/";
-    std::filesystem::create_directories(log_path);
-    
-    file.open(log_path + filename, std::ios::app);
-    
-    log_thread = std::thread(&POE2OverlayLogger::log_thread_func, this);
-}
-
-POE2OverlayLogger::~POE2OverlayLogger()
-{
-    stop_flag.store(true, std::memory_order_release);
-    
-    if (log_thread.joinable()) {
-        log_thread.join();
-    }
-}
-
-void POE2OverlayLogger::log_thread_func() {   
-    while (!stop_flag.load(std::memory_order_acquire)) {
-        LogEntry* entry = queue.front();
+void log_thread_func(LogContext& ctx) {   
+    while (!ctx.stop_flag.load(std::memory_order_acquire)) {
+        LogEntry* entry = ctx.queue.front();
         if (entry) {
-            log_ops::write_entry(file, *entry);
-            queue.pop();
+            log_ops::write_entry(ctx.file, *entry);
+            ctx.queue.pop();
         } else {
             std::this_thread::yield();
         }
     }
 
     LogEntry* entry;
-    while ((entry = queue.front()) != nullptr) {
-        log_ops::write_entry(file, *entry);
-        queue.pop();
+    while ((entry = ctx.queue.front()) != nullptr) {
+        log_ops::write_entry(ctx.file, *entry);
+        ctx.queue.pop();
     }
    
-    file.flush();
+    ctx.file.flush();
 }
 
-void POE2OverlayLogger::debug(std::string_view msg) { log_ops::log(queue, file, LogLevel::DEBUG, msg); }
-void POE2OverlayLogger::info (std::string_view msg) { log_ops::log(queue, file, LogLevel::INFO , msg); }
-void POE2OverlayLogger::warn (std::string_view msg) { log_ops::log(queue, file, LogLevel::WARN , msg); }
-void POE2OverlayLogger::error(std::string_view msg) { log_ops::log(queue, file, LogLevel::ERROR, msg); }
+} // namespace log_ops
+
+POE2OverlayLogger::POE2OverlayLogger(const std::string &filename)
+    : ctx {
+        .queue = rigtorp::SPSCQueue<LogEntry>(QUEUE_CAPACITY),
+        .file = std::ofstream("../log/" + filename),
+        .stop_flag = false,
+      }
+{
+    log_thread = std::thread(log_ops::log_thread_func, std::ref(ctx));
+}
+
+POE2OverlayLogger::~POE2OverlayLogger() {
+    ctx.stop_flag.store(true, std::memory_order_relaxed);
+
+    if(log_thread.joinable()) {
+        log_thread.join();
+    }
+}
+   
+void POE2OverlayLogger::log(LogLevel level, const std::string& msg) {
+    LogEntry entry { .level = level, .msg = msg};
+    log_ops::write_entry(ctx.file, entry);
+}

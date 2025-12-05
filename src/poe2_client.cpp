@@ -134,7 +134,8 @@ extract_passive_nodes(const Document& res_body, POE2OverlayLogger& logger) {
               return static_cast<NodeId>(std::stoi(s.substr(pos + 1)));
           });
 
-    std::vector<NodeId> node_ids(view.begin(), view.end());    
+    std::vector<NodeId> node_ids(view.begin(), view.end());
+
     return node_ids;
 }
 
